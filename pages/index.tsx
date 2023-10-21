@@ -1,9 +1,9 @@
-import Autocomplete from '@/components/Autocomplete';
+import Combobox from '@/components/Combobox';
 
 export default function Home() {
   return (
     <>
-      <Autocomplete />
+      <Combobox />
     </>
   );
 }

@@ -16,12 +16,14 @@ import { Loading } from './Loading';
 import { useDebounce } from '@uidotdev/usehooks';
 import { Country } from '@/types/countriesTypes';
 
-const Autocomplete: React.FC = () => {
+export default function Combobox() {
+  // State and hooks for handling user input, debouncing, and fetching data
   const [inputValue, setInputValue] = useState<string>('');
   const debouncedInput = useDebounce(inputValue, 500);
   const { data, isLoading, isError, error } = useCountries(debouncedInput);
   const [current, setCurrent] = useState<Country | null>(null);
 
+  // Combobox setup using downshift for a user-friendly search experience
   const {
     isOpen,
     getMenuProps,
@@ -39,12 +41,14 @@ const Autocomplete: React.FC = () => {
     },
   });
 
+  // Fetch nearby countries when a destination is selected
   const { data: nearbyCountries, isLoading: nearbyLoading } =
     useNearbyCountries({
       latitude: current?.latitude,
       longitude: current?.longitude,
     });
 
+  // Update the 'current' state when an item is selected from the combobox
   useEffect(() => {
     if (selectedItem) {
       setCurrent(selectedItem);
@@ -65,14 +69,17 @@ const Autocomplete: React.FC = () => {
             fontWeight="normal"
           />
           {isError ? (
+            // Display error message when there's an error
             <Text color="red">{error.message}</Text>
           ) : (
             isOpen &&
             (isLoading ? (
+              // Show loading spinner while data is being fetched
               <Loading />
             ) : (
               <>
                 {data && data.length > 0 && (
+                  // Render combobox menu when data is available
                   <Box
                     position="relative"
                     border="1px solid gray"
@@ -82,6 +89,7 @@ const Autocomplete: React.FC = () => {
                   >
                     <List {...getMenuProps()}>
                       {data.map((item, index) => (
+                        // Render list items based on search results
                         <ListItem
                           {...getItemProps({ item, index })}
                           key={index}
@@ -103,6 +111,7 @@ const Autocomplete: React.FC = () => {
           )}
         </Box>
         {current && (
+          // Display detailed information about the selected destination
           <Flex flexDir="column" mt={10}>
             <Text fontWeight="semibold">{current.name}</Text>
             <Text fontWeight="semibold">{current.description}</Text>
@@ -133,6 +142,7 @@ const Autocomplete: React.FC = () => {
               gap={2}
             >
               {nearbyCountries?.map((country, index) => (
+                // Render nearby locations as buttons
                 <Button
                   key={index}
                   size="sm"
@@ -152,6 +162,4 @@ const Autocomplete: React.FC = () => {
       </Flex>
     </Flex>
   );
-};
-
-export default Autocomplete;
+}
