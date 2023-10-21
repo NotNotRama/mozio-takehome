@@ -55,14 +55,17 @@ const Autocomplete: React.FC = () => {
     <Flex flexDir="column" p={10}>
       <Flex flexDir="column">
         <Box>
-          <Text pb={1}>Location</Text>
+          <Text fontWeight="semibold" pb={1}>
+            Location
+          </Text>
           <Input
             {...getInputProps()}
             placeholder="Search for a country"
             value={inputValue}
+            fontWeight="normal"
           />
           {isError ? (
-            <Text>{error.message}</Text>
+            <Text color="red">{error.message}</Text>
           ) : (
             isOpen &&
             (isLoading ? (
@@ -101,29 +104,29 @@ const Autocomplete: React.FC = () => {
         </Box>
         {current && (
           <Flex flexDir="column" mt={10}>
-            <Text>{current.name}</Text>
-            <Text>{current.description}</Text>
+            <Text fontWeight="semibold">{current.name}</Text>
+            <Text fontWeight="semibold">{current.description}</Text>
             <Flex flexDir="row">
-              <Box fontWeight="bold" pr={2}>
+              <Text fontWeight="bold" pr={2}>
                 Country:
-              </Box>
-              <Text>{current.country}</Text>
+              </Text>
+              <Text fontWeight="semibold">{current.country}</Text>
             </Flex>
             <Flex flexDir="row">
-              <Box fontWeight="bold" pr={2}>
+              <Text fontWeight="bold" pr={2}>
                 Climate:
-              </Box>
-              <Text>{current.climate}</Text>
+              </Text>
+              <Text fontWeight="semibold">{current.climate}</Text>
             </Flex>
             <Flex flexDir="row">
-              <Box fontWeight="bold" pr={2}>
+              <Text fontWeight="bold" pr={2}>
                 Currency:
-              </Box>
-              <Text>{current.currency}</Text>
+              </Text>
+              <Text fontWeight="semibold"> {current.currency}</Text>
             </Flex>
 
             <Box h="4" />
-            <Text>Nearby Locations</Text>
+            <Text fontWeight="semibold">Nearby Locations</Text>
             {nearbyLoading && <Loading />}
             <Grid
               templateColumns="repeat(auto-fit, minmax(120px, 1fr))"
