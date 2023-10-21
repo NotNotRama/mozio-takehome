@@ -14,17 +14,7 @@ import { useCountries } from '@/hooks/useCountries';
 import { useNearbyCountries } from '@/hooks/useNearbyCountries';
 import { Loading } from './Loading';
 import { useDebounce } from '@uidotdev/usehooks';
-
-type Country = {
-  id: number;
-  name: string;
-  description: string;
-  country: string;
-  climate: string;
-  currency: string;
-  latitude: number;
-  longitude: number;
-};
+import { Country } from '@/types/countriesTypes';
 
 const Autocomplete: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -50,7 +40,10 @@ const Autocomplete: React.FC = () => {
   });
 
   const { data: nearbyCountries, isLoading: nearbyLoading } =
-    useNearbyCountries(current?.latitude, current?.longitude);
+    useNearbyCountries({
+      latitude: current?.latitude,
+      longitude: current?.longitude,
+    });
 
   useEffect(() => {
     if (selectedItem) {

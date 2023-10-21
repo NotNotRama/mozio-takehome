@@ -1,19 +1,10 @@
+import { Coordinates, Country } from '@/types/countriesTypes';
 import { useQuery } from '@tanstack/react-query';
-type Country = {
-  id: number;
-  name: string;
-  description: string;
-  country: string;
-  climate: string;
-  currency: string;
-  latitude: number;
-  longitude: number;
-};
 
-const fetchNearbyCountries = async (
-  latitude: number | undefined,
-  longitude: number | undefined
-): Promise<Country[]> => {
+async function fetchNearbyCountries({
+  latitude,
+  longitude,
+}: Coordinates): Promise<Country[]> {
   if (!latitude || !longitude) return [];
   if (isNaN(latitude) || isNaN(longitude)) {
     throw new Error('Invalid coordinates');
@@ -26,16 +17,13 @@ const fetchNearbyCountries = async (
     throw new Error('Failed to fetch nearby countries');
   }
   return response.json();
-};
+}
 
-export const useNearbyCountries = (
-  latitude: number | undefined,
-  longitude: number | undefined
-) => {
+export function useNearbyCountries({ latitude, longitude }: Coordinates) {
   return useQuery({
     queryKey: ['nearbyCountries', latitude, longitude],
-    queryFn: () => fetchNearbyCountries(latitude, longitude),
+    queryFn: () => fetchNearbyCountries({ latitude, longitude }),
     enabled: !!latitude && !!longitude,
     retry: 1,
   });
-};
+}

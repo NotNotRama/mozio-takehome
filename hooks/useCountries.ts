@@ -1,14 +1,5 @@
+import { Country } from '@/types/countriesTypes';
 import { useQuery } from '@tanstack/react-query';
-type Country = {
-  id: number;
-  name: string;
-  description: string;
-  country: string;
-  climate: string;
-  currency: string;
-  latitude: number;
-  longitude: number;
-};
 
 const fetchCountries = async (query: string): Promise<Country[]> => {
   if (query === 'error') throw new Error('Users input was error');
