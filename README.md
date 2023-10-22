@@ -6,10 +6,12 @@ This is a React and TypeScript application that allows users to search for count
 
 - React
 - TypeScript
+- Next.js (for building API endpoints)
 - Chakra UI (styling and accessibility)
 - Downshift (combobox)
 - React-Query (API data fetching and caching)
-- Next.js (for building API endpoints)
+- usehooks (useDebounce was used to debounce the input)
+
 
 ## Developer Notes
 This application was built with several key considerations in mind to ensure a seamless user experience and efficient data handling:
