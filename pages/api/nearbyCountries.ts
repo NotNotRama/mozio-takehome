@@ -20,11 +20,14 @@ function calculateDistance(
   return R * c;
 }
 
-const nearbyCountriesHandler = (
+export default function nearbyCountriesHandler(
   req: NextApiRequest,
   res: NextApiResponse
-): void => {
+): void {
   const { latitude, longitude } = req.query;
+
+  console.log(req);
+  // Console logged the arguments as requested in the instructions
 
   if (!latitude || !longitude) {
     return res
@@ -48,9 +51,8 @@ const nearbyCountriesHandler = (
     .sort((a, b) => a.distance - b.distance)
     .slice(0, 4);
 
+  //setTimeout to simulate the delay of a real api call
   setTimeout(() => {
     res.status(200).json(nearbyCountries);
   }, 1000);
-};
-
-export default nearbyCountriesHandler;
+}
