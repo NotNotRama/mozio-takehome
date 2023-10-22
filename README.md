@@ -14,11 +14,11 @@ This is a React and TypeScript application that allows users to search for count
 ## Developer Notes
 This application was built with several key considerations in mind to ensure a seamless user experience and efficient data handling:
 
-**Accessibility**: Accessibility is a fundamental aspect of the application's design. We've utilized Chakra UI for our user interface, which comes with built-in accessibility features to ensure that the app is usable by a wide range of people, including those with disabilities.
+**Accessibility**: Accessibility is a fundamental aspect of the application's design. Chakra UI for our user interface, which comes with built-in accessibility features to ensure that the app is usable by a wide range of people, including those with disabilities.
 
-**Realistic Data Handling**: To simulate real API calls, we've implemented Next.js API endpoints with a small delay. This approach allows us to mimic the behavior of actual API requests while maintaining the efficiency of local development.
+**Realistic Data Handling**: To simulate real API calls, I've implemented Next.js API endpoints with a small delay. This approach allows for mimicking the behavior of actual API requests while maintaining the efficiency of local development.
 
-**Data Fetching and Caching**: For fetching and caching data, we've integrated React Query, which enhances data management by providing powerful tools for fetching, caching, synchronizing, and updating data from your server. This ensures that the application remains responsive and up-to-date with the latest data.
+**Data Fetching and Caching**: For fetching and caching data, React Query has been integrated, enhancing data management with powerful tools for fetching, caching, synchronizing, and updating data from the server. This ensures that the application remains up-to-date with the latest data.
 
 **Responsiveness**: The application is designed to be responsive, adapting to different screen sizes and devices. Whether you're using it on a desktop, tablet, or mobile device, you can expect a consistent and user-friendly experience.
 
